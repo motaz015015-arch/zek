@@ -1,31 +1,225 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بمناسبة السنة الجديدة 2026</title>
-    <style>
-        :root { --main-red: #d4001d; --dark-red: #800000; }
-        body {
-            margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--main-red), var(--dark-red));
-            background-size: 400% 400%; animation: gradientBG 15s ease infinite;
-            color: white; display: flex; justify-content: center; align-items: center;
-            height: 100vh; overflow: hidden; text-align: center; position: relative;
-        }
-        @keyframes gradientBG { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
-
-        /* قلوب متساقطة */
-        .heart { position: absolute; color: rgba(255, 255, 255, 0.6); animation: fall linear forwards; z-index: 1; pointer-events: none; }
-        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
-
-        /* بريق النجوم */
-        .sparkle { position: absolute; background: white; border-radius: 50%; opacity: 0; animation: twinkling 2s infinite; pointer-events: none; }
-        @keyframes twinkling { 0% { opacity: 0; transform: scale(0); } 50% { opacity: 0.8; transform: scale(1); } 100% { opacity: 0; transform: scale(0); } }
-
-        .container {
-            background: rgba(255, 255, 255, 0.18); padding: 25px; border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); backdrop-filter: blur(15px);
+‏<!DOCTYPE html>
+‏<html lang="ar" dir="rtl">
+‏<head>
+‏    <meta charset="UTF-8">
+‏    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+‏    <title>بمناسبة رمضان026</title>
+‏    <style>
+‏        :root { --main-red: #d4001d; --dark-red: #800000; }
+‏        body {
+‏            margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+‏            background: linear-gradient(135deg, var(--main-red), var(--dark-red));
+‏            background-size: 400% 400%; animation: gradientBG 15s ease infinite;
+‏            color: white; display: flex; justify-content: center; align-items: center;
+‏            height: 100vh; overflow: hidden; text-align: center; position: relative;
+‏        }
+‏        @keyframes gradientBG { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+‏
+‏        /* قلوب متساقطة */
+‏        .heart { position: absolute; color: rgba(255, 255, 255, 0.6); animation: fall linear forwards; z-index: 1; pointer-events: none; }
+‏        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
+‏
+‏        /* بريق النجوم */
+‏        .sparkle { position: absolute; background: white; border-radius: 50%; opacity: 0; animation: twinkling 2s infinite; pointer-events: none; }
+‏        @keyframes twinkling { 0% { opacity: 0; transform: scale(0); } 50% { opacity: 0.8; transform: scale(1); } 100% { opacity: 0; transform: scale(0); } }
+‏
+‏        .container {
+‏            background: rgba(255, 255, 255, 0.18); padding: 25px; border-radius: 25px;
+‏            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); backdrop-filter: blur(15px);
+‏            width: 88%; max-width: 400px; border: 1.5px solid rgba(255, 255, 255, 0.3);
+‏            z-index: 10; overflow-y: auto; max-height: 92vh; transition: all 0.5s;
+‏        }
+‏        .tree-icon { font-size: 55px; margin-bottom: 10px; animation: pulse 2s infinite; }
+‏        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+‏        
+‏        input[type="tel"] {
+‏            padding: 14px; width: 85%; border-radius: 30px; border: 2px solid white;
+‏            background: rgba(255, 255, 255, 0.1); color: white; text-align: center; font-size: 20px;
+‏            margin-bottom: 20px; outline: none; transition: 0.3s;
+‏        }
+‏
+‏        .btn-group { display: flex; gap: 10px; justify-content: center; margin-top: 10px; }
+‏        button {
+‏            padding: 12px 25px; background: white; border: none; color: var(--main-red);
+‏            border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 16px;
+‏            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); transition: 0.4s;
+‏        }
+‏        button:hover { background: #ffebeb; transform: translateY(-3px); }
+‏        button:disabled { background: #ccc; opacity: 0.5; cursor: not-allowed; transform: none; }
+‏
+‏        #story-screen, #gallery-screen { display: none; }
+‏        .fade-in { animation: fadeIn 0.8s ease-in-out forwards; }
+‏        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+‏        
+‏        .img-wrapper { position: relative; margin-top: 15px; overflow: hidden; border-radius: 15px; border: 3px solid white; background: #000; min-height: 200px; display: flex; align-items: center; justify-content: center; }
+‏        img, video { width: 100%; height: auto; max-height: 280px; object-fit: contain; }
+‏        
+‏        .photo-text { 
+‏            margin-top: 18px; font-weight: 600; font-size: 17px; line-height: 1.7; 
+‏            min-height: 90px; color: #fff; direction: rtl; text-align: right; white-space: pre-wrap; 
+‏        }
+‏        
+‏        .progress { font-size: 13px; margin-top: 12px; background: rgba(0,0,0,0.2); display: inline-block; padding: 4px 12px; border-radius: 15px; }
+‏        .floating-heart { position: fixed; bottom: 20px; right: 20px; font-size: 30px; animation: heartbeat 1.5s infinite; z-index: 100; }
+‏        @keyframes heartbeat { 0% { transform: scale(1); } 15% { transform: scale(1.3); } 30% { transform: scale(1); } 45% { transform: scale(1.15); } 60% { transform: scale(1); } }
+‏    </style>
+‏</head>
+‏<body>
+‏
+‏    <div class="floating-heart">💖</div>
+‏
+‏    <div id="login-screen" class="container">
+‏        <div class="tree-icon">🎄</div>
+‏        <div style="font-size: 24px; font-weight: bold; margin-bottom: 10px;">❤️ Welcome zeko</div>
+‏        <h1>اكتبي كلمة السر ✨</h1>
+‏        <input type="tel" id="passInput" placeholder="الباسورد">
+‏        <br>
+‏        <button onclick="checkPass()">🔓 افتح الحكاية</button>
+‏    </div>
+‏
+‏    <div id="story-screen" class="container">
+‏        <h1 style="color: #ffcccc;">روح الروح </h1>
+‏        <p style="font-size: 18px;">حبت اعملك مفجاء اعتزرلك واعبرلك فيه  ❤️</p>
+‏        <button onclick="showGallery()">📸 نبدأ رحلة </button>
+‏    </div>
+‏
+‏    <div id="gallery-screen" class="container">
+‏        <h2 style="margin-top:0; color: #ffcccc;">حب حياتي ❤️</h2>
+‏        <div class="img-wrapper" id="mediaWrapper"></div>
+‏        <p id="mainText" class="photo-text"></p>
+‏        <div id="photoProgress" class="progress"></div>
+‏        <br>
+‏        <div class="btn-group">
+‏            <button id="prevBtn" onclick="prevPhoto()">⬅ السابق</button>
+‏            <button id="nextBtn" onclick="nextPhoto()">التالي ⮕</button>
+‏        </div>
+‏    </div>
+‏
+‏    <script>
+‏        // دالة إنشاء القلوب والبريق
+‏        function createEffect(className, content) {
+‏            const el = document.createElement('div');
+‏            el.classList.add(className);
+‏            if (content) el.innerHTML = content;
+‏            
+‏            const size = Math.random() * 20 + 10;
+‏            el.style.left = Math.random() * 100 + "vw";
+‏            
+‏            if (className === 'sparkle') {
+‏                el.style.top = Math.random() * 100 + "vh";
+‏                el.style.width = size/4 + "px";
+‏                el.style.height = size/4 + "px";
+‏            } else {
+‏                el.style.animationDuration = Math.random() * 3 + 3 + "s";
+‏                el.style.fontSize = size + "px";
+‏            }
+‏            
+‏            document.body.appendChild(el);
+‏            setTimeout(() => el.remove(), 5000);
+‏        }
+‏
+‏        setInterval(() => createEffect('heart', '❤️'), 400);
+‏        setInterval(() => createEffect('sparkle'), 150); // إضافة البريق
+‏
+‏        const validPasswords = ["1111", "2209"];
+‏        
+‏        const photos = [
+‏     
+‏            { src: "ck.jpg", text: "حبيت اول حاجه اقلك كل سنة وإحنا سوا، وكل رمضان وإنتي منورة حياتي.. مش أول رمضان لينا مع بعض، ويا رب ما يكون الأخير، وتفضلي دايماً جنبي ومعايا " },
+‏            { src: "ck1.jpg", text: "بقعد أفكر في الأيام اللي فاتت وأقول قد إيه أنا كنت مش شايف، وقد إيه جرحتك وأنا بكلم غيرك وإنتي شايلة لي في قلبك كل الحب ده. أنا آسف على كل لحظة وجعتك فيها، وممتن جداً إنك فضلتي صامدة ومستنية لحد ما قلبي عرف إنك إنتي الخير كله. كل سنة وإنتي طيبة ويا رب أعوضك عن كل اللي فات" },
+‏            { src: "ck2.jpg", text: حابب أقولك إن اسمك هو 'النغمة' الوحيدة اللي صوتي بيحب ينطقها وبيطمن بيها" },
+‏            { src: "video.mp4", text: ""بيقولوا إن على قد الحب بيكون الزعل.. وأنا عشان بحبك أوي، بزيادة أوي، فزعلي منك بيبقى على قد غلاوتك اللي ملهاش حدود.
+‏​يا أبو غمزة بتخطف قلبي، أنا بزعل عشان أنت أغلى حاجة عندي، ومش بيهون عليا حتى الهوا يلمسك. عتابي ليك ده مجرد طريقة بقولك بيها 'خلي بالك من قلبي اللي بين إيديك'.
+‏​أنا بحبك حب ملوش آخر، وزعلي منك ما هو إلا "دلع" من كتر ما أنا متعلق بيك.. متبعدش عني ولا ثانية، عشان الدنيا من غيرك ومن غير ضحكتك (وغمزتك دي) ملهاش طعم", isVideo: true },
+‏            { src: "ck3.jpg", text: ""فيه ناس بتدوخ من الضحكة، أنا بقى بضيع في تفاصيل غمزتك.. مش كفاية ضحكة حلوة كمان غمزة تخطف القلب؟ طب هاتي بوسة فيها بقى ❤️" },
+‏            { src: "video1.mp4", text: "حضني دايماً هيكون هو بيتك وأمانك، والمكان اللي ترمي فيه كل تعبك وتطمني ❤️" },
+‏
+‏        ];
+‏        
+‏        let currentPhotoIndex = 0;
+‏        let typeTimeout;
+‏
+‏        function checkPass() {
+‏            const input = document.getElementById('passInput').value.trim();
+‏            if(validPasswords.includes(input)) {
+‏                document.getElementById('login-screen').style.display = 'none';
+‏                document.getElementById('story-screen').style.display = 'block';
+‏                document.getElementById('story-screen').classList.add('fade-in');
+‏            } else { 
+‏                alert("كلمة السر غلط! ركزي يا zeko"); 
+‏            }
+‏        }
+‏
+‏        function showGallery() {
+‏            document.getElementById('story-screen').style.display = 'none';
+‏            document.getElementById('gallery-screen').style.display = 'block';
+‏            renderContent();
+‏        }
+‏
+‏        function typeWriter(text) {
+‏            clearTimeout(typeTimeout);
+‏            let i = 0;
+‏            const target = document.getElementById("mainText");
+‏            target.innerHTML = "";
+‏            function type() {
+‏                if (i < text.length) {
+‏                    target.innerHTML += text.charAt(i);
+‏                    i++;
+‏                    typeTimeout = setTimeout(type, 40);
+‏                }
+‏            }
+‏            type();
+‏        }
+‏
+‏        function renderContent() {
+‏            const wrapper = document.getElementById('mediaWrapper');
+‏            const photoProg = document.getElementById('photoProgress');
+‏            const nextBtn = document.getElementById('nextBtn');
+‏            const prevBtn = document.getElementById('prevBtn');
+‏            const item = photos[currentPhotoIndex];
+‏            
+‏            wrapper.innerHTML = "";
+‏            prevBtn.disabled = (currentPhotoIndex === 0);
+‏            nextBtn.innerText = (currentPhotoIndex === photos.length - 1) ? "إعادة من الأول 🔄" : "التالي ⮕";
+‏
+‏            if (item.isVideo) {
+‏                const video = document.createElement('video');
+‏                video.src = item.src;
+‏                video.controls = true;
+‏                video.autoplay = true;
+‏                wrapper.appendChild(video);
+‏            } else {
+‏                const img = document.createElement('img');
+‏                img.src = item.src;
+‏                img.classList.add('fade-in');
+‏                wrapper.appendChild(img);
+‏            }
+‏
+‏            typeWriter(item.text);
+‏            photoProg.innerText = `العنصر ${currentPhotoIndex + 1} من ${photos.length}`;
+‏        }
+‏
+‏        function nextPhoto() {
+‏            if(currentPhotoIndex < photos.length - 1) {
+‏                currentPhotoIndex++;
+‏                renderContent();
+‏            } else {
+‏                alert("ده كانت المفجاء يارب تكون عجبتك❤️");
+‏                currentPhotoIndex = 0;
+‏                renderContent();
+‏            }
+‏        }
+‏
+‏        function prevPhoto() {
+‏            if(currentPhotoIndex > 0) {
+‏                currentPhotoIndex--;
+‏                renderContent();
+‏            }
+‏        }
+‏    </script>
+‏</body>
+‏</html>
+‏            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); backdrop-filter: blur(15px);
             width: 88%; max-width: 400px; border: 1.5px solid rgba(255, 255, 255, 0.3);
             z-index: 10; overflow-y: auto; max-height: 92vh; transition: all 0.5s;
         }
